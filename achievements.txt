@@ -1,3 +1,4 @@
 Achievements Log
 Add validation for message content - Wed, May  7, 2025  1:11:42 PM
 Add notification preferences - Wed, May  7, 2025  1:11:42 PM
+Add Notification model - Wed, May  7, 2025  1:11:42 PM
