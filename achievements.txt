@@ -5,3 +5,4 @@ Add Notification model - Wed, May  7, 2025  1:11:42 PM
 Display notifications in user dashboard - Wed, May  7, 2025  1:11:43 PM
 Refactor notification controller - Wed, May  7, 2025  1:11:43 PM
 Fix timestamp bug in messages - Wed, May  7, 2025  1:11:43 PM
+Update docs for notification system - Wed, May  7, 2025  1:11:43 PM
