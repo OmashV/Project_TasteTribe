@@ -9,3 +9,4 @@ Link learning plans to user profiles - Wed, May  7, 2025 12:59:24 PM
 Fix typo in learning plan form - Wed, May  7, 2025 12:59:24 PM
 Allow learning plan editing by owner only - Wed, May  7, 2025 12:59:24 PM
 Fix bug in learning plan update logic - Wed, May  7, 2025 12:59:25 PM
+Style learning plan list - Wed, May  7, 2025 12:59:25 PM
