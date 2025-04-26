@@ -38,6 +38,7 @@ public class OAuthController {
             user.setFullname(name);
             user.setGoogleProfileImage(googleProfileImage); // Save Google profile image
             userRepository.save(user);
+            
         } else {
             user = userRepository.findByEmail(email).orElseThrow(() -> 
                 new IllegalStateException("User not found despite existence check"));
