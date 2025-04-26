@@ -1,8 +1,8 @@
 #!/bin/bash
 
 # Your name and email (optional if already configured in Git)
-git config user.name "Your Name"
-git config user.email "your.email@example.com"
+git config user.name "malindusahan"
+git config user.email "balasooriyamalindu@gmail.com"
 
 # Today's date
 today=$(date +%s)
