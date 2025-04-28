@@ -18,3 +18,4 @@ Improve error handling in achievement service - Wed, May  7, 2025 12:31:57 PM
 Add Achievement model - Wed, May  7, 2025 12:31:57 PM
 Add achievement detail view - Wed, May  7, 2025 12:31:58 PM
 Update API docs for achievements - Wed, May  7, 2025 12:31:58 PM
+Style achievements list - Wed, May  7, 2025 12:31:58 PM
