@@ -16,3 +16,4 @@ Style achievements list - Wed, May  7, 2025  3:49:58 PM
 Add validation for achievement title - Wed, May  7, 2025  3:49:59 PM
 Add search feature for achievements - Wed, May  7, 2025  3:49:59 PM
 Add Achievement model - Wed, May  7, 2025  3:49:59 PM
+Update API docs for achievements - Wed, May  7, 2025  3:50:00 PM
