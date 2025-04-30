@@ -17,3 +17,4 @@ Add learning plan detail view - Wed, May  7, 2025 12:59:26 PM
 Fix typo in learning plan form - Wed, May  7, 2025 12:59:26 PM
 Add LearningPlan model - Wed, May  7, 2025 12:59:26 PM
 Add timestamps to learning plans - Wed, May  7, 2025 12:59:27 PM
+Update API docs for learning plans - Wed, May  7, 2025 12:59:27 PM
