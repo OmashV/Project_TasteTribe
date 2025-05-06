@@ -88,16 +88,20 @@ function AddNewPost() {
   return (
     <div className="create-post-page">
       <NavBar />
+  
+      {/* Move the header here, above the main content */}
+      <div className="create-post-header">
+        <div className="header-content">
+          <h1>Create Your Story</h1>
+          <p>Share your ideas with the world</p>
+        </div>
+        <div className="header-decoration"></div>
+      </div>
+  
       <div className="create-post-main">
         <div className="create-post-container">
-          <div className="create-post-header">
-            <div className="header-content">
-              <h1>Create Your Story</h1>
-              <p>Share your ideas with the world</p>
-            </div>
-            <div className="header-decoration"></div>
-          </div>
-
+          {/* Header removed from here */}
+  
           <form onSubmit={handleSubmit} className="create-post-form">
             <div className="form-floating-group">
               <div className="floating-input">
@@ -111,7 +115,7 @@ function AddNewPost() {
                 />
                 <label htmlFor="title">Post Title</label>
               </div>
-
+  
               <div className="floating-input">
                 <textarea
                   id="description"
@@ -123,7 +127,7 @@ function AddNewPost() {
                 />
                 <label htmlFor="description">Write your story...</label>
               </div>
-
+  
               <div className="floating-input">
                 <select
                   id="category"
@@ -140,7 +144,7 @@ function AddNewPost() {
                 <label htmlFor="category">Select Category</label>
               </div>
             </div>
-
+  
             <div className="media-section">
               <input
                 type="file"
@@ -160,7 +164,7 @@ function AddNewPost() {
                   <small>Max: 3 images or 1 video (30s)</small>
                 </div>
               </label>
-
+  
               {mediaPreviews.length > 0 && (
                 <div className="media-preview-section">
                   <h3>Media Preview</h3>
@@ -196,7 +200,7 @@ function AddNewPost() {
                 </div>
               )}
             </div>
-
+  
             <button type="submit" className="publish-button">
               Publish Post
             </button>
@@ -205,6 +209,7 @@ function AddNewPost() {
       </div>
     </div>
   );
+  
 }
 
 export default AddNewPost;

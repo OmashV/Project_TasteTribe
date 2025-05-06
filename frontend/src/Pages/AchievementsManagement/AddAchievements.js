@@ -69,16 +69,20 @@ function AddAchievements() {
   return (
     <div className="create-post-page">
       <NavBar />
+  
+      {/* Move the header here, above the main content */}
+      <div className="create-post-header">
+        <div className="header-content">
+          <h1>Share Your Achievement</h1>
+          <p>Celebrate your milestones with the community</p>
+        </div>
+        <div className="header-decoration"></div>
+      </div>
+  
       <div className="create-post-main">
         <div className="create-post-container">
-          <div className="create-post-header">
-            <div className="header-content">
-              <h1>Share Your Achievement</h1>
-              <p>Celebrate your milestones with the community</p>
-            </div>
-            <div className="header-decoration"></div>
-          </div>
-
+          {/* Header removed from here */}
+  
           <form onSubmit={handleSubmit} className="create-post-form">
             <div className="form-floating-group">
               <div className="floating-input">
@@ -93,7 +97,7 @@ function AddAchievements() {
                 />
                 <label htmlFor="title">Achievement Title</label>
               </div>
-
+  
               <div className="floating-input">
                 <textarea
                   id="description"
@@ -106,7 +110,7 @@ function AddAchievements() {
                 />
                 <label htmlFor="description">Tell us about your achievement</label>
               </div>
-
+  
               <div className="floating-input">
                 <select
                   id="category"
@@ -123,7 +127,7 @@ function AddAchievements() {
                 </select>
                 <label htmlFor="category">Select Category</label>
               </div>
-
+  
               <div className="floating-input">
                 <input
                   type="date"
@@ -137,7 +141,7 @@ function AddAchievements() {
                 <label htmlFor="date">Achievement Date</label>
               </div>
             </div>
-
+  
             <div className="media-section">
               <input
                 type="file"
@@ -156,7 +160,7 @@ function AddAchievements() {
                   <small>Upload a photo of your achievement</small>
                 </div>
               </label>
-
+  
               {imagePreview && (
                 <div className="media-preview-section">
                   <h3>Image Preview</h3>
@@ -180,7 +184,7 @@ function AddAchievements() {
                 </div>
               )}
             </div>
-
+  
             <button type="submit" className="publish-button">
               Share Achievement
             </button>
@@ -189,6 +193,7 @@ function AddAchievements() {
       </div>
     </div>
   );
+  
 }
 
 export default AddAchievements;
