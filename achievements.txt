@@ -28,3 +28,4 @@ Add timestamps to learning plans - Wed, May  7, 2025 12:59:29 PM
 Implement delete functionality for learning plans - Wed, May  7, 2025 12:59:29 PM
 Add timestamps to learning plans - Wed, May  7, 2025 12:59:29 PM
 Implement learning plan creation endpoint - Wed, May  7, 2025 12:59:30 PM
+Allow learning plan editing by owner only - Wed, May  7, 2025 12:59:30 PM
