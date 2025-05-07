@@ -699,7 +699,7 @@
   display: flex;
   align-items: center;   /* Vertical centering */
   justify-content: center; /* Horizontal centering */
-  padding: 0;            /* Remove extra padding if needed */
+  padding: auto;           /* Remove extra padding if needed */
 }
 
 

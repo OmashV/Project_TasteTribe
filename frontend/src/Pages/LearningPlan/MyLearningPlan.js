@@ -14,7 +14,8 @@ function MyLearningPlan() {
   const userId = localStorage.getItem('userID');
 
   useEffect(() => {
-    const fetchPosts = async () => {
+/*************  ✨ Windsurf Command ⭐  *************/
+/*******  686dc26c-949e-4148-9034-7dd8b9e8046c  *******/    const fetchPosts = async () => {
       try {
         const response = await axios.get('http://localhost:8080/learningPlan');
         const userPosts = response.data.filter(post => post.postOwnerID === userId); // Filter posts by userID

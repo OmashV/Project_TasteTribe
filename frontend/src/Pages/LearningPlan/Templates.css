@@ -331,11 +331,10 @@
   width: 380px;
   flex-shrink: 0;
   position: sticky;
-  top: 2rem;
-  /* height: calc(100vh - 4rem); */
   overflow: hidden;
   padding-right: 1rem;
   margin-left: -150px;
+  margin-top: 1rem;
 }
 
 .templates-list {
