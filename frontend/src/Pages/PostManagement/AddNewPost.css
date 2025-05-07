@@ -131,7 +131,7 @@
   width: 24px;
   height: 24px;
   border-radius: 50%;
-  background: #e74c3c;
+  background: #1c1a1a;
   color: white;
   border: none;
   cursor: pointer;
@@ -695,10 +695,13 @@
 }
 
 .create-post-main {
-  max-width: 900px;
-  margin: 2rem auto;
-  padding: 3rem 1.5rem;
+  min-height: calc(100vh - 120px); /* Adjust for header/nav height */
+  display: flex;
+  align-items: center;   /* Vertical centering */
+  justify-content: center; /* Horizontal centering */
+  padding: 0;            /* Remove extra padding if needed */
 }
+
 
 .create-post-container {
   background: white;
@@ -709,11 +712,18 @@
 
 .create-post-header {
   position: relative;
-  padding: 3rem 2rem;
-  background: linear-gradient(135deg, #10b981, #047857);
-  color: white;
+  padding: 1.5rem 2rem;  
+  margin-top: 3rem;         
+  color: rgb(11, 11, 11);
   text-align: center;
 }
+
+
+.header-decoration {
+  height: 0;
+  background: none;
+}
+
 
 .header-content h1 {
   font-size: 2.5rem;
@@ -726,19 +736,12 @@
   font-size: 1.1rem;
 }
 
-.header-decoration {
-  position: absolute;
-  bottom: -2px;
-  left: 0;
-  right: 0;
-  height: 40px;
-  background: white;
-  clip-path: polygon(0 100%, 100% 100%, 50% 0);
-}
 
 .create-post-form {
-  padding: 2rem;
+  padding: 0.5rem; /* or 0 for edge-to-edge */
+  width: 75%;
 }
+
 
 .form-floating-group {
   display: flex;

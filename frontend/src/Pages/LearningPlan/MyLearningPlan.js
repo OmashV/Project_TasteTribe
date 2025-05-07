@@ -14,6 +14,7 @@ function MyLearningPlan() {
   const userId = localStorage.getItem('userID');
 
   useEffect(() => {
+
     const fetchPosts = async () => {
       try {
         const response = await axios.get('http://localhost:8080/learningPlan');
