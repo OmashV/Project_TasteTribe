@@ -4,8 +4,8 @@
 }
 .side_logoo {
   background-image: url("./img/logocover.png");
-  width: 160px;
-  height: 50px;
+  width: 150px;
+  height: 40px;
   background-repeat: no-repeat;
   background-position: center;
   background-size: contain;
@@ -43,14 +43,15 @@
   width: 100%;
 }
 .nav_item_icon {
-  font-size: 35px;
+  font-size: 24px;
   color: #6366f1;
   cursor: pointer;
 }
 .nav_item_icon_noty {
-  font-size: 35px;
+  font-size: 24px;
   color: #6366f1;
   cursor: pointer;
+  margin-left: 1rem;
 }
 .nav_bar_item {
   display: flex;

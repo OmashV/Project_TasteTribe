@@ -68,10 +68,9 @@ public class LearningPlanController {
             throw new RuntimeException("Failed to upload image: " + e.getMessage());
         }
     }
-
     @GetMapping("/learningPlan")
     List<LearningPlanModel> getAll() {
-        List<LearningPlanModel> posts = learningPlanRepository.findAll();
+        List<LearningPlanModel> posts = learningPlanRepository.findAllByOrderByCreatedAtDesc();
         posts.forEach(post -> {
             if (post.getPostOwnerID() != null) {
                 String postOwnerName = userRepository.findById(post.getPostOwnerID())
@@ -82,6 +81,7 @@ public class LearningPlanController {
         });
         return posts;
     }
+    
 
     @GetMapping("/learningPlan/{id}")
     LearningPlanModel getById(@PathVariable String id) {

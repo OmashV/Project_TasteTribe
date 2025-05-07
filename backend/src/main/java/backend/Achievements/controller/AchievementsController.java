@@ -17,8 +17,9 @@ import java.nio.file.Paths;
 import java.util.List;
 import java.util.UUID;
 
+@CrossOrigin(origins = "http://localhost:3000")
 @RestController
-@CrossOrigin("http://localhost:3000")
+@RequestMapping("/api/achievements")
 public class AchievementsController {
     @Autowired
     private AchievementsRepository achievementsRepository;
@@ -72,7 +73,6 @@ public class AchievementsController {
     public void delete(@PathVariable String id) {
         achievementsRepository.deleteById(id);
     }
-
     @GetMapping("/achievements/images/{filename:.+}")
     public ResponseEntity<Resource> getImage(@PathVariable String filename) {
         try {
