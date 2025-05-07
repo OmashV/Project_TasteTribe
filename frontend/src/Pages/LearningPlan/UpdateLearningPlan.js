@@ -120,6 +120,16 @@ function UpdateLearningPost() {
   return (
     <div className="create-post-page">
       <NavBar />
+  
+      {/* Move the header here, above the main layout */}
+      <div className="create-post-header">
+        <div className="header-content">
+          <h1>Update Learning Plan</h1>
+          <p>Modify your learning journey</p>
+        </div>
+        <div className="header-decoration"></div>
+      </div>
+  
       <div className="create-post-main templates-layout">
         <div className="templates-sidebar">
           <h2 className="template-gallery-title">Choose a Template</h2>
@@ -151,16 +161,10 @@ function UpdateLearningPost() {
             </div>
           </div>
         </div>
-
+  
         <div className="create-post-container">
-          <div className="create-post-header">
-            <div className="header-content">
-              <h1>Update Learning Plan</h1>
-              <p>Modify your learning journey</p>
-            </div>
-            <div className="header-decoration"></div>
-          </div>
-
+          {/* Header removed from here */}
+  
           <form onSubmit={handleSubmit} className="create-post-form">
             <div className="form-floating-group">
               <div className="floating-input">
@@ -174,7 +178,7 @@ function UpdateLearningPost() {
                 />
                 <label htmlFor="title">Plan Title</label>
               </div>
-
+  
               <div className="floating-input">
                 <textarea
                   id="description"
@@ -186,7 +190,7 @@ function UpdateLearningPost() {
                 />
                 <label htmlFor="description">Plan Description</label>
               </div>
-
+  
               <div className="floating-input">
                 <select
                   id="category"
@@ -195,14 +199,16 @@ function UpdateLearningPost() {
                   required
                 >
                   <option value="" disabled></option>
-                  <option value="Tech">Tech</option>
-                  <option value="Programming">Programming</option>
-                  <option value="Cooking">Cooking</option>
-                  <option value="Photography">Photography</option>
+                  <option value="Technique-Basedch">Technique-Based</option>
+                  <option value="Diet & Lifestyle-Based">Diet & Lifestyle-Based</option>
+                  <option value="Meal Type-Based">Meal Type-Based</option>
+                  <option value="Cuisine-Based">Cuisine-Based</option>
+                  <option value="Other">Other</option>
+
                 </select>
                 <label htmlFor="category">Select Category</label>
               </div>
-
+  
               <div className="date-inputs">
                 <div className="floating-input">
                   <input
@@ -214,7 +220,7 @@ function UpdateLearningPost() {
                   />
                   <label htmlFor="startDate">Start Date</label>
                 </div>
-
+  
                 <div className="floating-input">
                   <input
                     type="date"
@@ -227,7 +233,7 @@ function UpdateLearningPost() {
                 </div>
               </div>
             </div>
-
+  
             <div className="tags-section material-card">
               <div className="tags-header">
                 <h3>Update Tags</h3>
@@ -261,7 +267,7 @@ function UpdateLearningPost() {
                 </button>
               </div>
             </div>
-
+  
             <div className="media-section material-card">
               <div className="media-header">
                 <h3>Update Media</h3>
@@ -285,7 +291,7 @@ function UpdateLearningPost() {
                   <span>Update Image</span>
                 </button>
               </div>
-
+  
               {showContentURLInput && (
                 <div className="material-url-input">
                   <input
@@ -297,7 +303,7 @@ function UpdateLearningPost() {
                   />
                 </div>
               )}
-
+  
               {showImageUploadInput && (
                 <div className="material-upload-section">
                   <input
@@ -338,7 +344,7 @@ function UpdateLearningPost() {
                 </div>
               )}
             </div>
-
+  
             <button type="submit" className="publish-button">
               Update Learning Plan
             </button>
@@ -347,6 +353,7 @@ function UpdateLearningPost() {
       </div>
     </div>
   );
+  
 }
 
 export default UpdateLearningPost;

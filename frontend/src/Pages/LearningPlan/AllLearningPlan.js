@@ -272,14 +272,16 @@ function AllLearningPlan() {
             <Typography variant="h6" sx={{ mb: 2 }}>Search Learning Plans</Typography>
             <TextField
               fullWidth
-              placeholder="Search by owner name"
+              placeholder="Search by owner, category, or hashtag"
               value={searchOwnerName}
               onChange={(e) => {
-                const value = e.target.value;
+                const value = e.target.value.toLowerCase();
                 setSearchOwnerName(value);
                 setFilteredPosts(
                   posts.filter((post) =>
-                    post.postOwnerName.toLowerCase().includes(value.toLowerCase())
+                    post.postOwnerName.toLowerCase().includes(value) ||
+                    (post.category && post.category.toLowerCase().includes(value)) ||
+                    (post.tags && post.tags.some(tag => tag.toLowerCase().includes(value.replace(/^#/, ""))))
                   )
                 );
               }}
@@ -292,6 +294,7 @@ function AllLearningPlan() {
                 )
               }}
             />
+
           </StyledSearchBar>
         </Box>
 
@@ -306,7 +309,7 @@ function AllLearningPlan() {
             </Paper>
           ) : (
             filteredPosts.map((post) => (
-              <Paper sx={{ mb: 3, borderRadius: 2, overflow: 'hidden' }} key={post.id}>
+              <Paper sx={{ mb: 6, borderRadius: 2, overflow: 'hidden' }} key={post.id}>
                 {renderPostByTemplate(post)}
               </Paper>
             ))
