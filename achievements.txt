@@ -28,3 +28,4 @@ Implement learning plan creation endpoint - Wed, May  7, 2025  3:44:09 PM
 Improve error handling in learning plan service - Wed, May  7, 2025  3:44:09 PM
 Style learning plan list - Wed, May  7, 2025  3:44:10 PM
 Style learning plan list - Wed, May  7, 2025  3:44:10 PM
+Improve error handling in learning plan service - Wed, May  7, 2025  3:44:10 PM
