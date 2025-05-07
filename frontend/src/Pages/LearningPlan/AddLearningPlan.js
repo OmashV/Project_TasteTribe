@@ -7,6 +7,7 @@ import '../PostManagement/AddNewPost.css'; // Import AddNewPost styles
 import NavBar from '../../Components/NavBar/NavBar';
 import { FaVideo, FaImage } from "react-icons/fa";
 import { HiCalendarDateRange } from "react-icons/hi2";
+import { formatDistanceToNow } from 'date-fns';
 
 function AddLearningPlan() {
   const [title, setTitle] = useState('');
@@ -136,6 +137,17 @@ function AddLearningPlan() {
   return (
     <div className="create-post-page">
       <NavBar />
+  
+      {/* Move this block above create-post-main */}
+      <div className="create-post-header">
+        <div className="header-content">
+          <h1>Create Learning Plan</h1>
+          <p>Share your learning journey with others</p>
+        </div>
+        <div className="header-decoration"></div>
+      </div>
+
+
       <div className="create-post-main templates-layout">
         <div className="templates-sidebar">
           <h2 className="template-gallery-title">Choose a Template</h2>
@@ -183,7 +195,7 @@ function AddLearningPlan() {
                 </div>
               </div>
             </div>
-
+  
             {/* Template 2 */}
             <div 
               className={`template-item ${templateID === '2' ? 'template-selected' : ''}`}
@@ -227,7 +239,7 @@ function AddLearningPlan() {
                 </div>
               </div>
             </div>
-
+  
             {/* Template 3 */}
             <div 
               className={`template-item ${templateID === '3' ? 'template-selected' : ''}`}
@@ -269,16 +281,10 @@ function AddLearningPlan() {
             </div>
           </div>
         </div>
-
+  
         <div className="create-post-container">
-          <div className="create-post-header">
-            <div className="header-content">
-              <h1>Create Learning Plan</h1>
-              <p>Share your learning journey with others</p>
-            </div>
-            <div className="header-decoration"></div>
-          </div>
-
+          {/* The header block is now above, so remove it from here */}
+  
           <form onSubmit={handleSubmit} className="create-post-form">
             <div className="form-floating-group">
               <div className="floating-input">
@@ -292,7 +298,7 @@ function AddLearningPlan() {
                 />
                 <label htmlFor="title">Plan Title</label>
               </div>
-
+  
               <div className="floating-input">
                 <textarea
                   id="description"
@@ -304,7 +310,7 @@ function AddLearningPlan() {
                 />
                 <label htmlFor="description">Plan Description</label>
               </div>
-
+  
               <div className="floating-input">
                 <select
                   id="category"
@@ -313,14 +319,15 @@ function AddLearningPlan() {
                   required
                 >
                   <option value="" disabled></option>
-                  <option value="Tech">Tech</option>
-                  <option value="Programming">Programming</option>
-                  <option value="Cooking">Cooking</option>
-                  <option value="Photography">Photography</option>
+                  <option value="Technique-Based">Technique-Based</option>
+                  <option value="Diet & Lifestyle-Based">Diet & Lifestyle-Based</option>
+                  <option value="Meal Type-Based">Meal Type-Based</option>
+                  <option value="Cuisine-Based">Cuisine-Based</option>
+                  <option value="Other">Other</option>
                 </select>
                 <label htmlFor="category">Select Category</label>
               </div>
-
+  
               <div className="floating-input">
                 <select
                   id="template"
@@ -335,7 +342,7 @@ function AddLearningPlan() {
                 </select>
                 <label htmlFor="template">Select Template</label>
               </div>
-
+  
               <div className="date-inputs">
                 <div className="floating-input">
                   <input
@@ -347,7 +354,7 @@ function AddLearningPlan() {
                   />
                   <label htmlFor="startDate">Start Date</label>
                 </div>
-
+  
                 <div className="floating-input">
                   <input
                     type="date"
@@ -360,7 +367,7 @@ function AddLearningPlan() {
                 </div>
               </div>
             </div>
-
+  
             <div className="tags-section material-card">
               <div className="tags-header">
                 <h3>Add Tags</h3>
@@ -371,7 +378,7 @@ function AddLearningPlan() {
                   <span key={index} className="material-tag">
                     #{tag}
                     <button 
-                      type="button" 
+                      type="button"
                       onClick={() => setTags(tags.filter((_, i) => i !== index))}
                       className="material-remove-tag"
                       aria-label="Remove tag"
@@ -395,7 +402,7 @@ function AddLearningPlan() {
                 </button>
               </div>
             </div>
-
+  
             <div className="media-section material-card">
               <div className="media-header">
                 <h3>Add Media</h3>
@@ -419,7 +426,7 @@ function AddLearningPlan() {
                   <span>Add Image</span>
                 </button>
               </div>
-
+  
               {showContentURLInput && (
                 <div className="material-url-input">
                   <input
@@ -442,7 +449,7 @@ function AddLearningPlan() {
                   )}
                 </div>
               )}
-
+  
               {showImageUploadInput && (
                 <div className="material-upload-section">
                   <input
@@ -483,7 +490,7 @@ function AddLearningPlan() {
                 </div>
               )}
             </div>
-
+  
             <button type="submit" className="publish-button" disabled={isSubmitting}>
               {isSubmitting ? 'Publishing...' : 'Publish Learning Plan'}
             </button>
