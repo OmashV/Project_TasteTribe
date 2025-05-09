@@ -49,6 +49,7 @@ function AddAchievements() {
       const uploadResponse = await fetch('http://localhost:8080/achievements/upload', {
         method: 'POST',
         body: formData,
+        credentials: 'include',
       });
       imageUrl = await uploadResponse.text();
     }

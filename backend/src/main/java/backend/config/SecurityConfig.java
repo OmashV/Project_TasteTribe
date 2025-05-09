@@ -32,7 +32,10 @@ public class SecurityConfig {
                                 "/notifications/**",
                                 "/progress-updates/**",
                                 "/progress-updates/plan/**",
-                                "/progress-updates/user/**"
+                                "/progress-updates/user/**",
+                                "/achievements/upload",
+                                "/achievements/images/**"
+
                         ).permitAll()
                         .anyRequest().authenticated()
                 )
