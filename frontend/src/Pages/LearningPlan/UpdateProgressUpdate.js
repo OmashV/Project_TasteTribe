@@ -151,13 +151,7 @@ function UpdateProgressUpdate() {
             <button type="submit" className="submit-btn">
               Update Progress
             </button>
-            <button 
-              type="button" 
-              className="cancel-btn"
-              onClick={() => navigate('/allLearningPlan')}
-            >
-              Cancel
-            </button>
+       
           </div>
         </form>
       </div>

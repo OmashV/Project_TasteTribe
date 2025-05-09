@@ -72,6 +72,12 @@ function AddProgressUpdate() {
 
   const handleChange = (e) => {
     const { name, value } = e.target;
+    
+    // Update the range input fill
+    if (name === 'completionPercentage') {
+      e.target.style.setProperty('--range-progress', `${value}%`);
+    }
+    
     setFormData(prev => ({
       ...prev,
       [name]: name === 'skillsLearned' ? value.split(',') : value
@@ -118,7 +124,7 @@ function AddProgressUpdate() {
                 name="skillsLearned"
                 value={formData.skillsLearned.join(',')}
                 onChange={handleChange}
-                placeholder="e.g., React, Node.js, MongoDB"
+                placeholder="e.g., Baking, Knife Skills, Sauces, Plating"
               />
             </div>
           )}
@@ -131,11 +137,10 @@ function AddProgressUpdate() {
                 name="resourcesUsed"
                 value={formData.resourcesUsed}
                 onChange={handleChange}
-                placeholder="e.g., Udemy Course, YouTube Tutorial"
+                placeholder="e.g., Tasty YouTube Channel, MasterClass with Gordon Ramsay"
               />
             </div>
           )}
-
           <div className="form-group">
             <label>Completion Percentage: {formData.completionPercentage}%</label>
             <input
@@ -145,8 +150,17 @@ function AddProgressUpdate() {
               onChange={handleChange}
               min="0"
               max="100"
+              style={{
+                width: '100%',
+                height: '8px', // make the track taller
+                borderRadius: '5px',
+                appearance: 'none',
+                background: `linear-gradient(to right, green 0%, green ${formData.completionPercentage}%, #e0e0e0 ${formData.completionPercentage}%, #e0e0e0 100%)`
+              }}
             />
           </div>
+
+
 
           <button type="submit" className="submit-btn">Add Progress Update</button>
         </form>
