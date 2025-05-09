@@ -8,4 +8,5 @@ public interface LearningPlanRepository extends MongoRepository<LearningPlanMode
     void deleteByPostOwnerID(String postOwnerID);
     List<LearningPlanModel> findByPostOwnerID(String postOwnerID);
     List<LearningPlanModel> findByPostOwnerName(String postOwnerName); // New method
+    List<LearningPlanModel> findAllByOrderByCreatedAtDesc();
 }

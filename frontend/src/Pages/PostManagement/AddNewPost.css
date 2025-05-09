@@ -339,6 +339,7 @@
   justify-content: center;
   padding: 2rem;
   background: #f0f2f5;
+  margin-bottom: 2rem;
 }
 
 .create-post-wrapper {
@@ -699,7 +700,7 @@
   display: flex;
   align-items: center;   /* Vertical centering */
   justify-content: center; /* Horizontal centering */
-  padding: 0;            /* Remove extra padding if needed */
+  margin-bottom: 0;           /* Remove extra padding if needed */
 }
 
 
