@@ -90,7 +90,7 @@ function AddProgressUpdate() {
     <div className="progress-update-page">
       <NavBar />
       <div className="progress-update-container">
-        <h1>Update Progress for {learningPlan.title}</h1>
+        <h1>Update Progress for "{learningPlan.title}"</h1>
         <form onSubmit={handleSubmit} className="progress-update-form">
           <div className="form-group">
             <label>Update Type</label>
@@ -141,23 +141,39 @@ function AddProgressUpdate() {
               />
             </div>
           )}
-          <div className="form-group">
-            <label>Completion Percentage: {formData.completionPercentage}%</label>
-            <input
-              type="range"
-              name="completionPercentage"
-              value={formData.completionPercentage}
-              onChange={handleChange}
-              min="0"
-              max="100"
-              style={{
-                width: '100%',
-                height: '8px', // make the track taller
-                borderRadius: '5px',
-                appearance: 'none',
-                background: `linear-gradient(to right, green 0%, green ${formData.completionPercentage}%, #e0e0e0 ${formData.completionPercentage}%, #e0e0e0 100%)`
-              }}
-            />
+          <div style={{
+            border: '1px solid #d1d5db',
+            padding: '16px',
+            borderRadius: '8px',
+            backgroundColor: '#f9fafb',
+            width: '100%',
+            maxWidth: '700px', // Increased from 400px to 600px
+            boxShadow: '0 1px 3px rgba(0, 0, 0, 0.1)',
+            margin: '0 auto', // Optional: center it horizontally
+            marginBottom: '16px'
+          }}>
+            <label style={{ marginBottom: '8px', display: 'block',fontWeight: '500', fontSize: '14px' }}>
+              Completion Percentage: {formData.completionPercentage}%
+            </label>
+          <input
+            type="range"
+            name="completionPercentage"
+            min="0"
+            max="100"
+            value={formData.completionPercentage}
+            onChange={handleChange}
+            style={{
+              width: '100%',
+              height: '10px',
+              borderRadius: '5px',
+              appearance: 'none',
+              background: `linear-gradient(to right, #047857 ${formData.completionPercentage}%, #e5e7eb ${formData.completionPercentage}%)`,
+              outline: 'none',
+              cursor: 'pointer',
+            }}
+            className="no-thumb"
+          />
+
           </div>
 
 

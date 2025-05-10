@@ -147,91 +147,96 @@ function AllLearningPlan() {
     }
   };
 
-  const renderProgressSection = (post) => {
-    const updates = progressUpdates[post.id] || [];
-    return (
-      <div className="progress-section">
-        <div className="button-container">
-          <button 
-            className="add-progress-btn"
-            onClick={() => navigate(`/learning-plan/${post.id}/add-progress`)}
-          >
-            <FaPlus size={16} />
-            Add Progress
-          </button>
-          
-          <button 
-            className={`show-progress-btn ${showProgress[post.id] ? 'active' : ''}`}
-            onClick={() => toggleProgress(post.id)}
-          >
-            <IoStatsChart size={16} />
-            {showProgress[post.id] ? 'Hide Progress' : 'Show Progress'}
-          </button>
-        </div>
-        {showProgress[post.id] && (
-          <div className="progress-updates">
-            <h4>Learning Progress</h4>
-            {updates.length === 0 ? (
-              <p>No progress updates yet</p>
-            ) : (
-              updates.map(update => (
-                <div key={update.id} className="progress-update-card">
-                  <div className="update-header">
-                    <div className="update-header-left">
-                      <span className="update-type">{update.updateType}</span>
-                      <span className="update-date">{update.date}</span>
-                    </div>
-                    {update.userId === userId && (
-                      <div className="progress-actions">
-                        <button
-                          className="progress-action-btn"
-                          onClick={() => handleUpdateProgress(post.id, update.id)}
-                        >
-                          <FiEdit className="progress-icon" />
-                        </button>
-                        <button
-                          className="progress-action-btn delete"
-                          onClick={() => handleDeleteProgress(post.id, update.id)}
-                        >
-                          <MdDeleteOutline className="progress-icon" />
-                        </button>
-                      </div>
-                    )}
-                  </div>
-                  <p className="update-content">{update.content}</p>
-                  <div className="update-details">
-                    <div className="completion-bar">
-                      <div 
-                        className="completion-fill"
-                        style={{ width: `${update.completionPercentage}%` }}
-                        data-progress={getProgressLevel(update.completionPercentage)}
-                      />
-                      <span 
-                        className="completion-text"
-                        data-progress={getProgressLevel(update.completionPercentage)}
-                      >
-                        {update.completionPercentage}% Complete
-                      </span>
-                    </div>
-                    {update.skillsLearned?.length > 0 && (
-                      <div className="skills-learned">
-                        <strong>Skills:</strong> {update.skillsLearned.join(', ')}
-                      </div>
-                    )}
-                    {update.resourcesUsed && (
-                      <div className="resources-used">
-                        <strong>Resources:</strong> {update.resourcesUsed}
-                      </div>
-                    )}
-                  </div>
-                </div>
-              ))
-            )}
-          </div>
-        )}
+const renderProgressSection = (post) => {
+  const updates = progressUpdates[post.id] || [];
+  return (
+    <div className="progress-section">
+      <div className="button-container">
+        <button 
+          className="add-progress-btn"
+          onClick={() => navigate(`/learning-plan/${post.id}/add-progress`)}
+        >
+          <FaPlus size={16} />
+          Add Progress
+        </button>
+        
+        <button 
+          className={`show-progress-btn ${showProgress[post.id] ? 'active' : ''}`}
+          onClick={() => toggleProgress(post.id)}
+        >
+          <IoStatsChart size={16} />
+          {showProgress[post.id] ? 'Hide Progress' : 'Show Progress'}
+        </button>
       </div>
-    );
-  };
+      {showProgress[post.id] && (
+        <div className="progress-updates">
+          <h4>Learning Progress</h4>
+          {updates.length === 0 ? (
+            <p>No progress updates yet</p>
+          ) : (
+            updates.map(update => (
+              <div key={update.id} className="progress-update-card">
+                <div className="update-header">
+                  <div className="update-header-left">
+                    <span className="update-type">{update.updateType}</span>
+                    <span className="update-date">{update.date}</span>
+                  </div>
+                  {update.userId === userId && (
+                    <div className="progress-actions">
+                      <button
+                        className="progress-action-btn"
+                        onClick={() => handleUpdateProgress(post.id, update.id)}
+                      >
+                        <FiEdit className="progress-icon" />
+                      </button>
+                      <button
+                        className="progress-action-btn delete"
+                        onClick={() => handleDeleteProgress(post.id, update.id)}
+                      >
+                        <MdDeleteOutline className="progress-icon" />
+                      </button>
+                    </div>
+                  )}
+                </div>
+                <p className="update-content">{update.content}</p>
+                <div className="update-details">
+                  <div className="completion-bar">
+                    <div 
+                      className="completion-fill"
+                      style={{ width: `${update.completionPercentage}%` }}
+                      data-progress={getProgressLevel(update.completionPercentage)}
+                    />
+                    <span 
+                      className="completion-text"
+                      data-progress={getProgressLevel(update.completionPercentage)}
+                    >
+                      {update.completionPercentage}% Complete
+                    </span>
+                  </div>
+                  {/* Show the percentage value next to the progress bar */}
+                  <div className="completion-percentage">
+                    <span>{update.completionPercentage}%</span>
+                  </div>
+                  {update.skillsLearned?.length > 0 && (
+                    <div className="skills-learned">
+                      <strong>Skills:</strong> {update.skillsLearned.join(', ')}
+                    </div>
+                  )}
+                  {update.resourcesUsed && (
+                    <div className="resources-used">
+                      <strong>Resources:</strong> {update.resourcesUsed}
+                    </div>
+                  )}
+                </div>
+              </div>
+            ))
+          )}
+        </div>
+      )}
+    </div>
+  );
+};
+
   const renderPostByTemplate = (post) => {
     console.log('Rendering post:', post); // Debugging: Log the post object
     if (!post.templateID) { // Use the correct field name

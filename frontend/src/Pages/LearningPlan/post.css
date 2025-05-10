@@ -286,7 +286,9 @@
   line-height: 1.5;
   color: #1e293b;
   margin-bottom: 16px;
+  text-align: left;  /* This will left-align the text */
 }
+
 
 /* Progress Bar */
 .completion-bar {
