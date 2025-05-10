@@ -115,10 +115,12 @@ function MyAchievements() {
                       <Box sx={{ display: 'flex', gap: 1 }}>
                         <div className='action_btn_icon_post'>
                           <FaEdit
+                            size={21}
                             onClick={() => window.location.href = `/updateAchievements/${progress.id}`} 
                             className='action_btn_icon' 
                           />
                           <RiDeleteBin6Fill
+                            size={30}
                             onClick={() => handleDelete(progress.id)}
                             className='action_btn_icon'
                           />
