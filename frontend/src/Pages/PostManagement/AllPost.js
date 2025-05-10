@@ -434,11 +434,17 @@ function AllPost() {
                         {/* Existing action buttons */}
                         <div className='action_btn_icon_post'>
                           <FaEdit
-                            onClick={() => handleUpdate(post.id)} className='action_btn_icon' />
+                            size={20} // Change to any size you want (e.g., 16, 24, 28)
+                            onClick={() => handleUpdate(post.id)}
+                            className='action_btn_icon'
+                          />
                           <RiDeleteBin6Fill
+                            size={33}
                             onClick={() => handleDelete(post.id)}
-                            className='action_btn_icon' />
+                            className='action_btn_icon'
+                          />
                         </div>
+
                       </Box>
                     )}
                   </Box>

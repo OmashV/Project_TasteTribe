@@ -18,14 +18,14 @@ public class LearningPlanModel {
     private String description;
     private String contentURL;
     private List<String> tags;
-    private String postOwnerID; // Use postOwnerID consistently
+    private String postOwnerID; 
     private String postOwnerName;
     private String createdAt;
     private String imageUrl;
-    private int templateID; // New field for templateID
-    private String startDate; // New field
-    private String endDate;   // New field
-    private String category;  // New field
+    private int templateID;
+    private String startDate; 
+    private String endDate;   
+    private String category; 
     
 
     public LearningPlanModel() {

@@ -178,10 +178,10 @@ function UpdateAchievements() {
                   required
                 >
                   <option value="" disabled></option>
-                  <option value="Tech">Tech</option>
-                  <option value="Programming">Programming</option>
-                  <option value="Cooking">Cooking</option>
-                  <option value="Photography">Photography</option>
+                  <option value="Recipe Master">Recipe Master</option>
+                  <option value="Helper Badge">Helper Badge</option>
+                  <option value="CookiCultural Explorer">Cultural Explorer </option>
+                  <option value="Other">Other</option>
                 </select>
                 <label htmlFor="category">Select Category</label>
               </div>

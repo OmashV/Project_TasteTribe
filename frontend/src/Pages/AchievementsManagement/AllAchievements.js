@@ -160,20 +160,23 @@ function AllAchievements() {
                         {progress.date}
                       </Typography>
                     </Box>
-                    {progress.postOwnerID === userId && (
-                      <Box sx={{ display: 'flex', gap: 1 }}>
-                        <div className='action_btn_icon_post'>
-                          <FaEdit
-                            onClick={() => window.location.href = `/updateAchievements/${progress.id}`} 
-                            className='action_btn_icon' 
-                          />
-                          <RiDeleteBin6Fill
-                            onClick={() => handleDelete(progress.id)}
-                            className='action_btn_icon'
-                          />
-                        </div>
-                      </Box>
-                    )}
+                        {progress.postOwnerID === userId && (
+                          <Box sx={{ display: 'flex', gap: 1 }}>
+                            <div className='action_btn_icon_post'>
+                              <FaEdit
+                                size={21} // Set the desired size in pixels
+                                onClick={() => window.location.href = `/updateAchievements/${progress.id}`} 
+                                className='action_btn_icon' 
+                              />
+                              <RiDeleteBin6Fill
+                                size={30} // Set the desired size in pixels
+                                onClick={() => handleDelete(progress.id)}
+                                className='action_btn_icon'
+                              />
+                            </div>
+                          </Box>
+                        )}
+
                   </Box>
 
                   <Typography variant="h6" gutterBottom>
