@@ -132,10 +132,10 @@ function AddNewPost() {
                   required
                 >
                   <option value="" disabled></option>
-                  <option value="Tech">Tech</option>
-                  <option value="Programming">Programming</option>
-                  <option value="Cooking">Cooking</option>
-                  <option value="Photography">Photography</option>
+                  <option value="Recipe">Recipe</option>
+                  <option value="Food Photography">Food Photography</option>
+                  <option value="Kitchen Tools">Kitchen Tools</option>
+                  <option value="Others">Others</option>
                 </select>
                 <label htmlFor="category">Select Category</label>
               </div>
