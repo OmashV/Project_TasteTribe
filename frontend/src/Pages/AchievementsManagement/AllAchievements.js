@@ -3,15 +3,19 @@ import { FaEdit } from "react-icons/fa";
 import { RiDeleteBin6Fill } from "react-icons/ri";
 import NavBar from '../../Components/NavBar/NavBar';
 import { IoIosCreate } from "react-icons/io";
-import { 
-  Box, 
-  Card, 
-  CardContent, 
-  Typography, 
+import {
+  Box,
+  Card,
+  CardContent,
+  Typography,
   TextField,
   Paper,
   InputAdornment,
-  styled
+  styled,
+  Select,
+  MenuItem,
+  FormControl,
+  InputLabel
 } from '@mui/material';
 import SearchIcon from '@mui/icons-material/Search';
 
@@ -23,7 +27,6 @@ const StyledSearchBar = styled(Paper)(({ theme }) => ({
   position: 'sticky',
   top: '64px',
   borderRadius: 0,
-
   boxShadow: 'none',
   borderRight: '1px solid rgba(0,0,0,0.12)',
   marginTop: '60px'
@@ -61,6 +64,7 @@ function AllAchievements() {
   const [progressData, setProgressData] = useState([]);
   const [filteredData, setFilteredData] = useState([]);
   const [searchQuery, setSearchQuery] = useState('');
+  const [sortOrder, setSortOrder] = useState('newest');
   const userId = localStorage.getItem('userID');
 
   useEffect(() => {
@@ -68,21 +72,29 @@ function AllAchievements() {
       .then((response) => response.json())
       .then((data) => {
         setProgressData(data);
-        setFilteredData(data);
       })
       .catch((error) => console.error('Error fetching Achievements data:', error));
   }, []);
 
+  useEffect(() => {
+    const filtered = progressData.filter(
+      (achievement) =>
+        achievement.title.toLowerCase().includes(searchQuery) ||
+        achievement.description.toLowerCase().includes(searchQuery)
+    );
+
+    const sorted = [...filtered].sort((a, b) => {
+      const dateA = new Date(a.date);
+      const dateB = new Date(b.date);
+      return sortOrder === 'newest' ? dateB - dateA : dateA - dateB;
+    });
+
+    setFilteredData(sorted);
+  }, [searchQuery, sortOrder, progressData]);
+
   const handleSearch = (e) => {
     const query = e.target.value.toLowerCase();
     setSearchQuery(query);
-
-    const filtered = progressData.filter(
-      (achievement) =>
-        achievement.title.toLowerCase().includes(query) ||
-        achievement.description.toLowerCase().includes(query)
-    );
-    setFilteredData(filtered);
   };
 
   const handleDelete = async (id) => {
@@ -93,7 +105,7 @@ function AllAchievements() {
         });
         if (response.ok) {
           alert('Achievements deleted successfully!');
-          setFilteredData(filteredData.filter((progress) => progress.id !== id));
+          setProgressData(progressData.filter((progress) => progress.id !== id));
         } else {
           alert('Failed to delete Achievements.');
         }
@@ -106,12 +118,12 @@ function AllAchievements() {
   return (
     <Box>
       <NavBar />
-      <Box sx={{ 
-        display: 'flex', 
+      <Box sx={{
+        display: 'flex',
         bgcolor: '#ffffff',
         minHeight: 'calc(100vh - 64px)'
       }}>
-        {/* Left side - Search */}
+        {/* Left side - Search & Sort */}
         <Box sx={{ width: '400px', flexShrink: 0 }}>
           <StyledSearchBar elevation={0}>
             <Typography variant="h6" sx={{ mb: 2 }}>Search Achievements</Typography>
@@ -130,6 +142,19 @@ function AllAchievements() {
               }}
               sx={{ mb: 2 }}
             />
+
+            {/* Sorting Dropdown */}
+            <FormControl fullWidth sx={{ mb: 2 }}>
+              <InputLabel>Sort By</InputLabel>
+              <Select
+                value={sortOrder}
+                label="Sort By"
+                onChange={(e) => setSortOrder(e.target.value)}
+              >
+                <MenuItem value="newest">Newest First</MenuItem>
+                <MenuItem value="oldest">Oldest First</MenuItem>
+              </Select>
+            </FormControl>
           </StyledSearchBar>
         </Box>
 
@@ -146,11 +171,11 @@ function AllAchievements() {
             filteredData.map((progress) => (
               <AchievementCard key={progress.id}>
                 <CardContent>
-                  <Box sx={{ 
-                    display: 'flex', 
-                    justifyContent: 'space-between', 
+                  <Box sx={{
+                    display: 'flex',
+                    justifyContent: 'space-between',
                     alignItems: 'center',
-                    mb: 2 
+                    mb: 2
                   }}>
                     <Box sx={{ display: 'flex', alignItems: 'center', gap: 1 }}>
                       <Typography variant="subtitle1" fontWeight="medium">
@@ -160,31 +185,30 @@ function AllAchievements() {
                         {progress.date}
                       </Typography>
                     </Box>
-                        {progress.postOwnerID === userId && (
-                          <Box sx={{ display: 'flex', gap: 1 }}>
-                            <div className='action_btn_icon_post'>
-                              <FaEdit
-                                size={21} // Set the desired size in pixels
-                                onClick={() => window.location.href = `/updateAchievements/${progress.id}`} 
-                                className='action_btn_icon' 
-                              />
-                              <RiDeleteBin6Fill
-                                size={30} // Set the desired size in pixels
-                                onClick={() => handleDelete(progress.id)}
-                                className='action_btn_icon'
-                              />
-                            </div>
-                          </Box>
-                        )}
-
+                    {progress.postOwnerID === userId && (
+                      <Box sx={{ display: 'flex', gap: 1 }}>
+                        <div className='action_btn_icon_post'>
+                          <FaEdit
+                            size={21}
+                            onClick={() => window.location.href = `/updateAchievements/${progress.id}`}
+                            className='action_btn_icon'
+                          />
+                          <RiDeleteBin6Fill
+                            size={30}
+                            onClick={() => handleDelete(progress.id)}
+                            className='action_btn_icon'
+                          />
+                        </div>
+                      </Box>
+                    )}
                   </Box>
 
                   <Typography variant="h6" gutterBottom>
                     {progress.title}
                   </Typography>
-                  <Typography 
-                    variant="body1" 
-                    sx={{ 
+                  <Typography
+                    variant="body1"
+                    sx={{
                       whiteSpace: "pre-line",
                       color: 'text.secondary',
                       mb: 2
@@ -194,9 +218,9 @@ function AllAchievements() {
                   </Typography>
 
                   {progress.imageUrl && (
-                    <Box sx={{ 
-                      mt: 2, 
-                      borderRadius: 2, 
+                    <Box sx={{
+                      mt: 2,
+                      borderRadius: 2,
                       overflow: 'hidden',
                       '& img': {
                         width: '100%',
