@@ -917,9 +917,16 @@ textarea {
   width: 100%;
 }
 
+/* Category filter chips */
+.MuiChip-root {
+  margin: 2px;
+  background-color: #f0f0f0;
+}
+
+/* Filter container */
 .sortby-container {
-  padding: 24px 20px 20px 20px;
-  margin-top: 60px;
+  padding: 24px 20px;
+  margin: 60px 20px 0 20px;
   background: #fff;
   border-radius: 12px;
   box-shadow: 0 2px 12px rgba(0,0,0,0.06);
@@ -931,13 +938,6 @@ textarea {
   z-index: 1;
 }
 
-.sortby-search .MuiInputBase-root {
-  background: #f7f7f7;
-  border-radius: 8px;
+.sortby-container .MuiFormControl-root {
+  margin-bottom: 16px;
 }
-
-.sortby-select .MuiSelect-select {
-  background: #f7f7f7;
-  border-radius: 8px;
-}
-

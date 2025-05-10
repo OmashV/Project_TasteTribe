@@ -199,7 +199,7 @@ function UpdateLearningPost() {
                   required
                 >
                   <option value="" disabled></option>
-                  <option value="Technique-Basedch">Technique-Based</option>
+                  <option value="Technique-Based">Technique-Based</option>
                   <option value="Diet & Lifestyle-Based">Diet & Lifestyle-Based</option>
                   <option value="Meal Type-Based">Meal Type-Based</option>
                   <option value="Cuisine-Based">Cuisine-Based</option>

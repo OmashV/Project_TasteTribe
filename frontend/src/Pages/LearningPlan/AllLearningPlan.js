@@ -19,7 +19,8 @@ import {
   MenuItem,
   Select,
   FormControl,
-  InputLabel
+  InputLabel,
+  Chip
 } from '@mui/material';
 import SearchIcon from '@mui/icons-material/Search';
 import { useNavigate } from 'react-router-dom';
@@ -56,9 +57,11 @@ function AllLearningPlan() {
   const [posts, setPosts] = useState([]);
   const [filteredPosts, setFilteredPosts] = useState([]);
   const [searchOwnerName, setSearchOwnerName] = useState('');
+  const [selectedCategories, setSelectedCategories] = useState([]);
+  const [allCategories, setAllCategories] = useState([]);
   const [progressUpdates, setProgressUpdates] = useState({});
   const [showProgress, setShowProgress] = useState({});
-  const [sortOrder, setSortOrder] = useState('new'); // 'new' or 'old'
+  const [sortOrder, setSortOrder] = useState('new');
   const userId = localStorage.getItem('userID');
   const navigate = useNavigate();
 
@@ -68,6 +71,8 @@ function AllLearningPlan() {
         const response = await axios.get('http://localhost:8080/learningPlan');
         setPosts(response.data);
         setFilteredPosts(response.data);
+        const categories = [...new Set(response.data.map(post => post.category))];
+        setAllCategories(categories);
       } catch (error) {
         console.error('Error fetching posts:', error);
       }
@@ -90,20 +95,57 @@ function AllLearningPlan() {
     filteredPosts.forEach(post => fetchProgressUpdates(post.id));
   }, [filteredPosts]);
 
-  // Sort posts whenever sortOrder or filteredPosts changes
   useEffect(() => {
-    let sorted = [...filteredPosts];
-    sorted.sort((a, b) => {
-      // Replace 'createdAt' with your actual date field if different
-      const dateA = new Date(a.createdAt);
-      const dateB = new Date(b.createdAt);
-      return sortOrder === 'new'
-        ? dateB - dateA // Newest first
-        : dateA - dateB; // Oldest first
-    });
-    setFilteredPosts(sorted);
-    // eslint-disable-next-line
-  }, [sortOrder]);
+    const fetchPosts = async () => {
+      try {
+        const response = await axios.get('http://localhost:8080/learningPlan');
+        setPosts(response.data);
+        setFilteredPosts(response.data);
+        
+        // Extract unique categories
+        const categories = [...new Set(response.data.map(post => post.category))];
+        setAllCategories(categories);
+      } catch (error) {
+        console.error('Error fetching posts:', error);
+      }
+    };
+    fetchPosts();
+  }, []);
+
+  // Update filtered posts when search, categories, or sort change
+  useEffect(() => {
+    const filterAndSortPosts = () => {
+      let filtered = posts.filter(post => {
+        const matchesSearch = post.postOwnerName?.toLowerCase().includes(searchOwnerName.toLowerCase()) ||
+          post.category?.toLowerCase().includes(searchOwnerName.toLowerCase()) ||
+          post.tags?.some(tag => tag.toLowerCase().includes(searchOwnerName.toLowerCase().replace(/^#/, "")));
+
+        const matchesCategory = selectedCategories.length === 0 || 
+          selectedCategories.includes(post.category);
+
+        return matchesSearch && matchesCategory;
+      });
+
+      // Sort by date
+      filtered.sort((a, b) => {
+        const dateA = new Date(a.createdAt);
+        const dateB = new Date(b.createdAt);
+        return sortOrder === 'new' ? dateB - dateA : dateA - dateB;
+      });
+
+      setFilteredPosts(filtered);
+    };
+
+    filterAndSortPosts();
+  }, [searchOwnerName, selectedCategories, sortOrder, posts]);
+
+  // Category filter handlers
+  const handleCategoryChange = (event) => {
+    const value = event.target.value;
+    setSelectedCategories(
+      typeof value === 'string' ? value.split(',') : value,
+    );
+  };
 
   const getEmbedURL = (url) => {
     try {
@@ -166,6 +208,8 @@ function AllLearningPlan() {
       }
     }
   };
+
+  
 
   const renderProgressSection = (post) => {
     const updates = progressUpdates[post.id] || [];
@@ -439,46 +483,71 @@ function AllLearningPlan() {
 
   return (
     <Box>
-      <NavBar />
-      <Box sx={{ 
-        display: 'flex', 
-        bgcolor: '#ffffff',
-        minHeight: 'calc(100vh - 64px)'
-      }}>
+        <NavBar />
+        <Box sx={{ 
+          display: 'flex', 
+          bgcolor: '#ffffff',
+          minHeight: 'calc(100vh - 64px)'
+        }}>
         {/* Left side - Search and Sort */}
-   <Box sx={{ width: '350px', flexShrink: 0 }}>
-  <Paper elevation={0} className="sortby-container">
-    <Typography variant="h6" sx={{ mb: 2 }}>Search Learning Plans</Typography>
-    <TextField
-      fullWidth
-      placeholder="Search by owner, category, or hashtag"
-      value={searchOwnerName}
-      onChange={handleSearchChange}
-      variant="outlined"
-      InputProps={{
-        startAdornment: (
-          <InputAdornment position="start">
-            <SearchIcon sx={{ color: 'text.secondary' }} />
-          </InputAdornment>
-        )
-      }}
-      className="sortby-search"
-    />
-    <FormControl fullWidth sx={{ mt: 2 }}>
-      <InputLabel id="sort-order-label">Sort By</InputLabel>
-      <Select
-        labelId="sort-order-label"
-        value={sortOrder}
-        label="Sort By"
-        onChange={(e) => setSortOrder(e.target.value)}
-        className="sortby-select"
-      >
-        <MenuItem value="new">Latest First</MenuItem>
-        <MenuItem value="old">Oldest First</MenuItem>
-      </Select>
-    </FormControl>
-  </Paper>
-</Box>
+          <Box sx={{ width: '350px', flexShrink: 0 }}>
+               <Paper elevation={0} className="sortby-container">
+               <Typography variant="h6" sx={{ mb: 2 }}>Search Learning Plans</Typography>
+            <TextField
+              fullWidth
+              placeholder="Search by owner, category, or hashtag"
+              value={searchOwnerName}
+              onChange={(e) => setSearchOwnerName(e.target.value)}
+              variant="outlined"
+              InputProps={{
+                startAdornment: (
+                  <InputAdornment position="start">
+                    <SearchIcon sx={{ color: 'text.secondary' }} />
+                  </InputAdornment>
+                )
+              }}
+              className="sortby-search"
+              sx={{ mb: 2 }}
+            />
+            {/* Sort Dropdown */}
+            <FormControl fullWidth>
+              <InputLabel id="sort-order-label">Sort By</InputLabel>
+              <Select
+                labelId="sort-order-label"
+                value={sortOrder}
+                label="Sort By"
+                onChange={(e) => setSortOrder(e.target.value)}
+              >
+                <MenuItem value="new">Latest First</MenuItem>
+                <MenuItem value="old">Oldest First</MenuItem>
+              </Select>
+            </FormControl>
+
+                    {/* Category Filter */}
+            <FormControl fullWidth sx={{ mb: 2 }}>
+              <InputLabel id="category-filter-label">Category</InputLabel>
+              <Select
+                labelId="category-filter-label"
+                multiple
+                value={selectedCategories}
+                onChange={handleCategoryChange}
+                renderValue={(selected) => (
+                  <Box sx={{ display: 'flex', flexWrap: 'wrap', gap: 0.5 }}>
+                    {selected.map((value) => (
+                      <Chip key={value} label={value} />
+                    ))}
+                  </Box>
+                )}
+              >
+                {allCategories.map((category) => (
+                  <MenuItem key={category} value={category}>
+                    {category}
+                  </MenuItem>
+                ))}
+              </Select>
+            </FormControl>
+         </Paper>
+       </Box>
 
 
         {/* Right side - Posts */}
