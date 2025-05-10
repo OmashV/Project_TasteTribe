@@ -916,3 +916,28 @@ textarea {
 .dis_con {
   width: 100%;
 }
+
+.sortby-container {
+  padding: 24px 20px 20px 20px;
+  margin-top: 60px;
+  background: #fff;
+  border-radius: 12px;
+  box-shadow: 0 2px 12px rgba(0,0,0,0.06);
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+  position: sticky;
+  top: 64px;
+  z-index: 1;
+}
+
+.sortby-search .MuiInputBase-root {
+  background: #f7f7f7;
+  border-radius: 8px;
+}
+
+.sortby-select .MuiSelect-select {
+  background: #f7f7f7;
+  border-radius: 8px;
+}
+
