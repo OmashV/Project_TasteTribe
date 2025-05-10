@@ -34,7 +34,7 @@
 .progress-update-form {
   width: 100%;
   padding: 1rem;
-  border: 2px solid var(--border-color);
+
   border-radius: 12px;
   background: transparent;
   font-size: 1rem;
@@ -109,7 +109,6 @@
   margin-top: -6px;
 }
 
-/* Basic completion bar */
 .completion-bar {
   width: 100%;
   height: 8px;
@@ -121,13 +120,13 @@
   position: relative;
 }
 
-/* Basic completion fill */
 .completion-fill {
   height: 100%;
   background: var(--green-color);
   border-radius: 8px;
   transition: width 0.3s ease;
 }
+
 
 /* Basic percentage text */
 .completion-text {
@@ -256,26 +255,29 @@
     width: 100%;
   }
 
-  input[type="range"]::-webkit-slider-thumb {
-    appearance: none;
-    width: 16px;
-    height: 16px;
-    background: green;
-    border-radius: 50%;
-    cursor: pointer;
-    border: none;
-    margin-top: -4px; /* Align with thicker track */
-  }
-  
+
+
+
+}
+input[type="range"].no-thumb::-webkit-slider-thumb {
+  appearance: none;
+  height: 0;
+  width: 0;
+  background: transparent;
+  border: none;
 }
 
-input[type="range"]::-webkit-slider-thumb {
-  appearance: none;
-  width: 16px;
-  height: 16px;
-  background: green;
-  border-radius: 50%;
-  cursor: pointer;
+input[type="range"].no-thumb::-moz-range-thumb {
+  height: 0;
+  width: 0;
+  background: transparent;
   border: none;
-  margin-top: -4px; /* Align with thicker track */
 }
+
+input[type="range"].no-thumb::-ms-thumb {
+  height: 0;
+  width: 0;
+  background: transparent;
+  border: none;
+}
+

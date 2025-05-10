@@ -141,7 +141,7 @@ function AddLearningPlan() {
       {/* Move this block above create-post-main */}
       <div className="create-post-header">
         <div className="header-content">
-          <h1>Create Learning Plan</h1>
+          <h1>Create Your Learning Plan</h1>
           <p>Share your learning journey with others</p>
         </div>
         <div className="header-decoration"></div>
