@@ -1,4 +1,4 @@
-# CulinaryConnect
+# TasteTribe
 
 **CulinaryConnect** is a cooking web application designed for food lovers and those looking to improve their cooking skills. Whether you're a beginner or an expert, this platform allows users to share experiences, learn from others, and connect with fellow cooking enthusiasts.
 
